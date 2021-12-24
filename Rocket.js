@@ -7,7 +7,7 @@ class Rocket extends Particle {
         super(
             random(windowWidth),
             windowHeight,
-            createVector(0, random(-10, -15)),
+            createVector(random(-3, 3), random(-10, -15)),
             false
         );
     }
