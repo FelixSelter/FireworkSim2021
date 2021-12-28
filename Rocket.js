@@ -2,29 +2,24 @@ var particlesPerRocket = 100;
 
 class Rocket extends Particle {
     color = random(255);
+    charge;
 
-    constructor() {
+    constructor(charge) {
         super(
-            random(windowWidth),
+            random(100, windowWidth - 200),
             windowHeight,
             createVector(random(-3, 3), random(-10, -15)),
             false
         );
+        this.charge = charge;
     }
 
     update() {
         super.update();
 
         if (this.velocity.y >= 0) {
-            for (let i = 0; i < particlesPerRocket; i++) {
-                new Particle(
-                    this.location.x,
-                    this.location.y,
-                    p5.Vector.random2D().mult(random(2, 10)),
-                    true,
-                    this.color
-                );
-            }
+            explode.play();
+            this.charge.explode(this);
             this.removeParticle();
         }
     }
